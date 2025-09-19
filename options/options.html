@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞书收藏插件设置</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <img src="../icons/icon48.png" alt="飞书收藏" class="logo">
+                <h1>飞书收藏插件设置</h1>
+            </div>
+        </header>
+
+        <main class="main">
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="basic">基础设置</button>
+                <button class="nav-tab" data-tab="advanced">高级设置</button>
+                <button class="nav-tab" data-tab="collections">收藏管理</button>
+                <button class="nav-tab" data-tab="about">关于</button>
+            </nav>
+
+            <!-- 基础设置 -->
+            <div id="basic-tab" class="tab-content active">
+                <div class="section">
+                    <h2>飞书配置</h2>
+                    <p class="section-desc">请先在飞书开放平台创建应用并获取相关信息</p>
+                    
+                    <div class="form-group">
+                        <label for="appId">应用ID (App ID)</label>
+                        <input type="text" id="appId" placeholder="请输入应用ID">
+                        <div class="help-text">在飞书开放平台应用的"凭证与基础信息"中获取</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appSecret">应用密钥 (App Secret)</label>
+                        <input type="password" id="appSecret" placeholder="请输入应用密钥">
+                        <div class="help-text">在飞书开放平台应用的"凭证与基础信息"中获取</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appToken">多维表格Token (App Token)</label>
+                        <input type="text" id="appToken" placeholder="请输入多维表格Token">
+                        <div class="help-text">在飞书多维表格的URL中获取，格式如：bascnxxxxx</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tableId">数据表ID (Table ID)</label>
+                        <input type="text" id="tableId" placeholder="请输入数据表ID">
+                        <div class="help-text">在飞书多维表格中，右键点击数据表名称获取</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>同步设置</h2>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="autoSync">
+                            <span class="checkmark"></span>
+                            启用自动同步
+                        </label>
+                        <div class="help-text">每30分钟自动同步本地收藏到飞书</div>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button id="testConnection" class="btn btn-secondary">测试连接></button>
+                    <button id="saveSettings" class="btn btn-primary">保存设置></button>
+                </div>
+            </div>
+
+            <!-- 高级设置 -->
+            <div id="advanced-tab" class="tab-content">
+                <div class="section">
+                    <h2>数据管理</h2>
+                    <div class="form-group">
+                        <label for="maxLocalStorage">本地存储上限</label>
+                        <select id="maxLocalStorage">
+                            <option value="50">50条</option>
+                            <option value="100" selected>100条</option>
+                            <option value="200">200条</option>
+                            <option value="500">500条</option>
+                        </select>
+                        <div class="help-text">达到上限后，最早的记录将被删除</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>导入导出</h2>
+                    <div class="section-actions">
+                        <button id="exportData" class="btn btn-secondary">导出数据></button>
+                        <button id="importData" class="btn btn-secondary">导入数据></button>
+                        <input type="file" id="importFile" accept=".json" style="display: none;">
+                    </div>
+                </div>
+
+                <div class="section danger-zone">
+                    <h2>危险区域</h2>
+                    <p class="danger-desc">这些操作不可恢复，请谨慎操作</p>
+                    <div class="section-actions">
+                        <button id="clearLocalData" class="btn btn-danger">清空本地数据></button>
+                        <button id="clearSyncQueue" class="btn btn-danger">清空同步队列></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 收藏管理 -->
+            <div id="collections-tab" class="tab-content">
+                <div class="section">
+                    <h2>收藏统计</h2>
+                    <div class="stats-container" id="statsContainer">
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalCount">0</div>
+                            <div class="stat-label">总收藏数</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="tagCount">0</div>
+                            <div class="stat-label">标签数</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="unsyncedCount">0</div>
+                            <div class="stat-label">未同步</div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-actions">
+                        <button id="syncNow" class="btn btn-primary">立即同步></button>
+                        <button id="refreshStats" class="btn btn-secondary">刷新统计></button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>收藏列表</h2>
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="搜索收藏..." class="search-input">
+                        <select id="tagFilter" class="tag-filter">
+                            <option value="">所有标签</option>
+                        </select>
+                    </div>
+                    <div id="collectionsList" class="collections-list">
+                        <div class="loading">加载中...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 关于 -->
+            <div id="about-tab" class="tab-content">
+                <div class="section">
+                    <h2>关于飞书收藏插件</h2>
+                    <div class="about-content">
+                        <p>飞书收藏插件是一个浏览器扩展，帮助您将网页收藏保存到飞书多维表格中。</p>
+                        
+                        <h3>功能特性</h3>
+                        <ul>
+                            <li>一键收藏网页到飞书多维表格</li>
+                            <li>支持自定义标签和备注</li>
+                            <li>自动同步和离线缓存</li>
+                            <li>本地数据管理和搜索</li>
+                            <li>数据导入导出功能</li>
+                        </ul>
+                        
+                        <h3>使用说明</h3>
+                        <ol>
+                            <li>在飞书开放平台创建应用并获取App ID和App Secret</li>
+                            <li>创建多维表格，获取App Token和Table ID</li>
+                            <li>在插件设置中填写相关信息</li>
+                            <li>点击浏览器工具栏的插件图标即可收藏网页</li>
+                        </ol>
+                        
+                        <h3>版本信息</h3>
+                        <p>版本：1.0.0</p>
+                        <p>最后更新：2025年1月</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="status" class="status-bar"></div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>

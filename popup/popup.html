@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收藏到飞书</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="../icons/icon48.png" alt="飞书收藏" class="logo">
+            <h1>收藏到飞书</h1>
+        </div>
+        
+        <div class="content">
+            <div class="page-info">
+                <img id="pageIcon" class="page-icon" src="" alt="">
+                <div class="page-details">
+                    <div id="pageTitle" class="page-title"></div>
+                    <div id="pageUrl" class="page-url"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="tags">标签</label>
+                <div class="tag-input-container">
+                    <input type="text" id="tagInput" placeholder="输入标签，按回车添加">
+                    <div id="tagList" class="tag-list"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="notes">备注</label>
+                <textarea id="notes" placeholder="添加备注信息..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">页面描述</label>
+                <div id="pageDescription" class="page-description"></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <button id="saveBtn" class="btn btn-primary">
+                <span class="btn-text">收藏到飞书</span>
+                <span class="loading" style="display: none;">收藏中...</span>
+            </button>
+            <div id="status" class="status"></div>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

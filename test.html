@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞书收藏插件 - 测试页面</title>
+    <meta name="description" content="这是一个用于测试飞书收藏插件的示例页面，包含各种HTML元素和元数据。">
+    <meta name="keywords" content="飞书,收藏,插件,测试,示例,HTML,JavaScript">
+    <meta property="og:title" content="飞书收藏插件测试页面">
+    <meta property="og:description" content="测试飞书收藏插件的功能和页面信息采集">
+    <link rel="icon" type="image/png" href="icons/icon48.png">
+    <link rel="shortcut icon" href="icons/icon48.png">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #3370ff, #2c5aa0);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .feature-list li:before {
+            content: "✅ ";
+            margin-right: 10px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3370ff;
+        }
+        .btn {
+            background: #3370ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #2c5aa0;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 飞书收藏插件测试页面</h1>
+        <p>这是一个专门用于测试飞书收藏插件功能的示例页面</p>
+    </div>
+
+    <div class="content">
+        <h2>📋 页面信息测试</h2>
+        <p>这个页面包含了各种HTML元素和元数据，用于测试插件的页面信息采集功能。插件应该能够正确获取以下信息：</p>
+        
+        <ul class="feature-list">
+            <li>页面标题（Title）</li>
+            <li>页面描述（Meta Description）</li>
+            <li>页面关键词（Meta Keywords）</li>
+            <li>Open Graph 元数据</li>
+            <li>页面图标（Favicon）</li>
+            <li>页面URL</li>
+            <li>页面内容</li>
+        </ul>
+
+        <div class="test-section">
+            <h3>🔧 功能测试</h3>
+            <p>点击下方按钮测试不同的功能：</p>
+            <button class="btn" onclick="testConsoleLog()">测试控制台日志</button>
+            <button class="btn" onclick="testLocalStorage()">测试本地存储</button>
+            <button class="btn" onclick="testPageInfo()">显示页面信息</button>
+            <button class="btn" onclick="testError()">测试错误处理</button>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 动态内容测试</h3>
+            <p>这个区域会动态更新内容，测试插件是否能获取到动态生成的内容：</p>
+            <div id="dynamic-content">
+                <p>这是初始内容。3秒后会有新内容添加到这里。</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🎯 长内容测试</h3>
+            <p>测试插件对长内容的处理能力：</p>
+            <div id="long-content">
+                <p>这是一段比较长的内容，用于测试插件的文本截断和处理功能。插件应该能够智能地处理长文本，
+                在保持内容完整性的同时，避免过长的文本影响显示效果。如果文本超过一定长度，
+                插件应该能够自动进行截断处理，添加省略号来表示内容的延续。</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔗 链接测试</h3>
+            <p>测试包含各种链接的页面：</p>
+            <ul>
+                <li><a href="https://www.example.com" target="_blank">示例链接</a> - 普通外部链接</li>
+                <li><a href="/test" target="_blank">相对路径链接</a> - 相对路径链接</li>
+                <li><a href="#section1">锚点链接</a> - 页面内锚点</li>
+                <li><a href="mailto:test@example.com">邮件链接</a> - 邮件地址链接</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 表单测试</h3>
+            <p>测试包含表单的页面：</p>
+            <form id="test-form" onsubmit="handleFormSubmit(event)">
+                <label>测试输入：</label><br>
+                <input type="text" id="test-input" placeholder="输入一些内容测试" style="margin: 10px 0; padding: 8px; width: 200px;"><br>
+                <button type="submit" class="btn">提交表单</button>
+            </form>
+        </div>
+
+        <div class="test-section">
+            <h3>📋 表格测试</h3>
+            <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                <thead>
+                    <tr style="background-color: #f0f0f0;">
+                        <th>功能</th>
+                        <th>状态</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>页面标题获取</td>
+                        <td style="color: green;">✅ 支持</td>
+                        <td>自动获取页面title标签内容</td>
+                    </tr>
+                    <tr>
+                        <td>Meta描述获取</td>
+                        <td style="color: green;">✅ 支持</td>
+                        <td>获取meta name="description"内容</td>
+                    </tr>
+                    <tr>
+                        <td>关键词获取</td>
+                        <td style="color: green;">✅ 支持</td>
+                        <td>获取meta name="keywords"内容</td>
+                    </tr>
+                    <tr>
+                        <td>图标获取</td>
+                        <td style="color: green;">✅ 支持</td>
+                        <td>获取页面favicon图标</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="test-section">
+            <h3>🖼️ 图片测试</h3>
+            <p>测试页面中的图片元素：</p>
+            <img src="icons/icon48.png" alt="插件图标" style="width: 48px; height: 48px; margin: 10px;">
+            <img src="icons/icon.svg" alt="SVG图标" style="width: 48px; height: 48px; margin: 10px;">
+        </div>
+
+        <div class="test-section">
+            <h3>💻 代码测试</h3>
+            <p>测试代码块显示：</p>
+            <div class="code-block">
+// 测试JavaScript代码
+function testPlugin() {
+    console.log('测试飞书收藏插件');
+    const pageInfo = {
+        title: document.title,
+        url: window.location.href,
+        description: '测试页面描述'
+    };
+    return pageInfo;
+}
+            </div>
+        </div>
+
+        <div class="test-section" id="section1">
+            <h3>⚡ 性能测试</h3>
+            <p>测试插件的性能表现：</p>
+            <button class="btn" onclick="performanceTest()">运行性能测试</button>
+            <div id="performance-result" style="margin-top: 15px;"></div>
+        </div>
+
+        <footer style="text-align: center; margin-top: 40px; padding: 20px; color: #666; border-top: 1px solid #eee;">
+            <p>飞书收藏插件测试页面 - 版本 1.0.0</p>
+            <p>测试时间：<span id="test-time"></span></p>
+        </footer>
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="lib/storage.js"></script>
+    <script src="lib/feishu-api.js"></script>
+    <script src="quick-test.js"></script>
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 设置测试时间
+            document.getElementById('test-time').textContent = new Date().toLocaleString();
+            
+            // 动态内容测试
+            setTimeout(() => {
+                const dynamicContent = document.getElementById('dynamic-content');
+                const newContent = document.createElement('div');
+                newContent.innerHTML = `
+                    <h4>动态添加的内容</h4>
+                    <p>这是通过JavaScript动态添加的内容，测试插件是否能获取到这些动态生成的内容。</p>
+                    <p>时间戳：${new Date().toISOString()}</p>
+                `;
+                dynamicContent.appendChild(newContent);
+            }, 3000);
+        });
+
+        // 测试控制台日志
+        function testConsoleLog() {
+            console.log('🚀 飞书收藏插件测试');
+            console.log('页面标题:', document.title);
+            console.log('页面URL:', window.location.href);
+            console.log('页面描述:', document.querySelector('meta[name="description"]')?.content);
+            console.log('页面关键词:', document.querySelector('meta[name="keywords"]')?.content);
+            alert('控制台日志已输出，请查看浏览器控制台');
+        }
+
+        // 测试本地存储
+        function testLocalStorage() {
+            try {
+                // 测试存储
+                localStorage.setItem('test_plugin', 'test_value');
+                const value = localStorage.getItem('test_plugin');
+                
+                console.log('本地存储测试:');
+                console.log('存储的值:', value);
+                console.log('存储容量使用情况:', JSON.stringify(localStorage).length, '字符');
+                
+                // 清理测试数据
+                localStorage.removeItem('test_plugin');
+                
+                alert('本地存储测试完成，请查看控制台');
+            } catch (error) {
+                console.error('本地存储测试失败:', error);
+                alert('本地存储测试失败: ' + error.message);
+            }
+        }
+
+        // 显示页面信息
+        function testPageInfo() {
+            const pageInfo = {
+                title: document.title,
+                url: window.location.href,
+                description: document.querySelector('meta[name="description"]')?.content || '无描述',
+                keywords: document.querySelector('meta[name="keywords"]')?.content || '无关键词',
+                icon: document.querySelector('link[rel="icon"]')?.href || '无图标',
+                timestamp: new Date().toISOString()
+            };
+            
+            console.log('页面信息:', pageInfo);
+            alert('页面信息已输出到控制台，请查看');
+        }
+
+        // 测试错误处理
+        function testError() {
+            try {
+                // 故意制造一个错误
+                undefinedFunction();
+            } catch (error) {
+                console.error('测试错误:', error);
+                alert('错误处理测试完成，请查看控制台');
+            }
+        }
+
+        // 处理表单提交
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const input = document.getElementById('test-input');
+            console.log('表单提交内容:', input.value);
+            alert('表单提交成功，内容：' + input.value);
+            input.value = '';
+        }
+
+        // 性能测试
+        function performanceTest() {
+            const resultDiv = document.getElementById('performance-result');
+            resultDiv.innerHTML = '性能测试中...';
+            
+            // 使用性能监控工具
+            const monitor = new PerformanceMonitor();
+            
+            monitor.start('dom_query');
+            const elements = document.querySelectorAll('*');
+            const domQueryTime = monitor.end('dom_query');
+            
+            monitor.start('local_storage');
+            for (let i = 0; i < 100; i++) {
+                localStorage.setItem('perf_test_' + i, 'test_data_' + i);
+            }
+            for (let i = 0; i < 100; i++) {
+                localStorage.getItem('perf_test_' + i);
+            }
+            for (let i = 0; i < 100; i++) {
+                localStorage.removeItem('perf_test_' + i);
+            }
+            const localStorageTime = monitor.end('local_storage');
+            
+            monitor.start('json_operations');
+            const testData = { elements: elements.length, timestamp: Date.now() };
+            const jsonString = JSON.stringify(testData);
+            const parsedData = JSON.parse(jsonString);
+            const jsonOperationsTime = monitor.end('json_operations');
+            
+            resultDiv.innerHTML = `
+                <h4>性能测试结果</h4>
+                <ul>
+                    <li>DOM查询：${domQueryTime.toFixed(2)}ms (<strong>${elements.length}</strong> 个元素)</li>
+                    <li>本地存储操作：${localStorageTime.toFixed(2)}ms (100次读写删)</li>
+                    <li>JSON操作：${jsonOperationsTime.toFixed(2)}ms</li>
+                </ul>
+                <p><strong>总耗时：${(domQueryTime + localStorageTime + jsonOperationsTime).toFixed(2)}ms</strong></p>
+            `;
+            
+            console.log('性能测试结果:', monitor.getAllMetrics());
+        }
+    </script>
+</body>
+</html>

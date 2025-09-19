@@ -1,0 +1,49 @@
+{
+  "name": "feishu-collection-plugin",
+  "version": "1.0.0",
+  "description": "飞书收藏插件 - 一键收藏网页到飞书多维表格",
+  "main": "background.js",
+  "scripts": {
+    "build": "node build.js",
+    "validate": "node build.js --validate-only",
+    "test": "echo '打开 test.html 文件进行功能测试'",
+    "icons": "node build.js --icons-only"
+  },
+  "keywords": [
+    "chrome-extension",
+    "feishu",
+    "bookmark",
+    "collection",
+    "browser-plugin",
+    "multidimensional-table"
+  ],
+  "author": "飞书收藏插件开发团队",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/feishu-collection-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/feishu-collection-plugin/issues"
+  },
+  "homepage": "https://github.com/your-username/feishu-collection-plugin#readme",
+  "devDependencies": {
+    "archiver": "^5.3.1",
+    "fs-extra": "^11.1.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browser-extension": {
+    "manifest_version": 3,
+    "permissions": [
+      "activeTab",
+      "storage",
+      "scripting"
+    ],
+    "host_permissions": [
+      "https://open.feishu.cn/*",
+      "https://*.feishu.cn/*"
+    ]
+  }
+}

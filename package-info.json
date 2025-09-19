@@ -1,0 +1,23 @@
+{
+  "name": "飞书收藏插件",
+  "version": "1.0.0",
+  "buildTime": "2025-09-12T03:48:10.808Z",
+  "files": [
+    "manifest.json",
+    "background.js",
+    "content.js",
+    "utils.js",
+    "popup/",
+    "options/",
+    "lib/",
+    "icons/",
+    "README.md"
+  ],
+  "instructions": [
+    "1. 打开 Chrome 浏览器，访问 chrome://extensions/",
+    "2. 开启右上角的\"开发者模式\"",
+    "3. 点击\"加载已解压的扩展程序\"",
+    "4. 选择本插件文件夹",
+    "5. 插件安装完成！"
+  ]
+}
